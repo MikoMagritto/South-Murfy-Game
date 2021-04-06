@@ -3,6 +3,11 @@ body {
 
   font-size: 18px;
   font-family: "Verdana";
+  background-image: url('https://res.cloudinary.com/cobble/image/upload/v1617642786/PHOTOS%20RECO/2-PHOTOS%20TRAIT%C3%89ES/BOB008149/Capture_d_e%CC%81cran_2021-04-05_a%CC%80_19.11.46.png');
+  background-size: cover;
+}
+#Nuages {
+  border: 1px;
 }
 
 body {display:flex; min-height:100vh;}
@@ -14,7 +19,7 @@ body >div {flex:1;}
 }
 
 .logo-img {
-  width: 350px;
+  width: 230px;
 }
 
 .arrows-img {
@@ -39,4 +44,8 @@ body button {
   position:absolute; left:0;top:0;
   width:100%; height:100%;
   object-fit:contain;
+}
+
+#gameOver {
+  color: #870007;
 }

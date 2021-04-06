@@ -1,67 +1,95 @@
-let car;
+let player;
 let obstacles;
 let gameover;
-let points;
+let points = 0;
+var life = 0;
+var numberFrame = 150;
+var component;
+var components;
 
 const ctx = document.querySelector('canvas').getContext('2d');
 const W = ctx.canvas.width;
 const H = ctx.canvas.height;
 
 function draw() {
-  ctx.clearRect(0,0, 1000,1600)
-  ctx.fillStyle = "#3d8305";
-	ctx.fillRect(0, 0, W, H);
-	ctx.fillStyle = "#808080";
-	ctx.fillRect(70, 0, W - 2 * 70, H);
-	ctx.fillStyle = "white";
-	ctx.fillRect(100, 0, 25, H);
-	ctx.fillStyle = "white";
-	ctx.fillRect(W - 100 - 25, 0, 25, H);
-	ctx.beginPath();
-	ctx.lineWidth = 13;
-	ctx.strokeStyle = "white";
-	ctx.setLineDash([50, 40]);
-	ctx.moveTo(500, 0);
-	ctx.lineTo(500, H);
-	ctx.stroke();
+  //
+  // toutes les 16,s 
+  //
+  console.log('coucou life', life)
+  ctx.clearRect(0, 0, 1500, 1600)
+  ctx.fillStyle = "#093E3E";
+  ctx.fillRect(0, 0, W, H);
 
-  car.draw();
- 
+  const coeur1 = document.createElement('img');
+  coeur1.src = "./images/Coeur.png";
+  ctx.drawImage(coeur1, 50, 50, 90, 90);
 
-  if(frames % 150 === 0){
-    let obstacle = new Obstacle ();
-    obstacles.push(obstacle)
+  const coeur2 = document.createElement('img');
+  coeur2.src = "./images/Coeur.png";
+  ctx.drawImage(coeur2, 150, 50, 90, 90);
+
+  const coeur3 = document.createElement('img');
+  coeur3.src = "./images/Coeur.png";
+  ctx.drawImage(coeur3, 250, 50, 90, 90);
+
+  const coeur4 = document.createElement('img');
+  coeur4.src = "./images/Coeur.png";
+  ctx.drawImage(coeur4, 350, 50, 90, 90);
+
+  if (life === 0) {
+    const coeur5 = document.createElement('img');
+    coeur5.src = "./images/Coeur.png";
+    ctx.drawImage(coeur5, 450, 50, 90, 90);
   }
-  obstacles.forEach(function (element){
-    element.y +=5;
+
+
+
+  player.draw();
+
+  if (frames % numberFrame === 0) {
+    let obstacle = new Obstacle();
+    obstacles.push(obstacle);
+    var component = new Component();
+    components.push(component);
+  }
+  obstacles.forEach(function (element) {
+    element.y += 5;
     element.draw();
   })
-  //
-  // Iteration #5: collisions
-  //
-
-  // TODO
-
-  //
-  // Iteration #6: points
-  //
-
-  // TODO
+  components.forEach(function (element) {
+    element.y += 10;
+    element.draw();
+  })
+  for (component of components) {
+    if (player.hitComponent(component)) {
+      console.log(life);
+    }
+  }
+  //attraper les obstacles
+  for (obstacle of obstacles) {
+    if (player.pickupObstacle(obstacle)) {
+      console.log(points)
+    }
+  }
+  ctx.font = "50px Arial"
+  ctx.textAlign = "right"
+  ctx.fillStyle = "white"
+  ctx.fillText(`${points} Kilos de déchets évités`, W - 50, 100)
 
 }
 
 document.onkeydown = function (e) {
-  if (!car) return;
+  if (!player) return;
   console.log('touche appuyee', e)
-  switch(e.key) {
-    case'ArrowLeft':
-    console.log('gauche');
-    car.x += -100;
-    break;
-    case'ArrowRight':
-    console.log('droite');
-    car.x += 100;
-    break;
+  switch (e.key) {
+    case 'ArrowLeft':
+      console.log('gauche');
+      player.x += -100;
+      break;
+    case 'ArrowRight':
+      console.log('droite');
+      player.x += 100;
+      break;
   }
 }
 
@@ -78,22 +106,29 @@ function animLoop() {
 }
 
 function startGame() {
+
   if (raf) {
     cancelAnimationFrame(raf);
   }
-  car = new Car();
+  gameover = false;
+  player = new Player();
   obstacles = [];
-  //requestAnimationFrame(animLoop);
-
-
-  // TODO
+  components = [];
+  points = 0;
+  life = 0;
 
   animLoop();
-}
 
-document.getElementById("start-button").onclick = function() {
+}
+document.getElementById("start-button").onclick = function () {
   startGame();
 };
 
 // auto-start
-startGame();
+//startGame();
+
+// else if(obstacle.y > H){
+//   console.log("life lost")
+//   life++
+//   console.log(life)
+// }
