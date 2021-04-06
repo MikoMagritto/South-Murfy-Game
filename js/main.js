@@ -17,31 +17,65 @@ function draw() {
   //
   console.log('coucou life', life)
   ctx.clearRect(0, 0, 1500, 1600)
-  ctx.fillStyle = "#093E3E";
+  ctx.fillStyle = "blanchedalmond";
   ctx.fillRect(0, 0, W, H);
-
-  const coeur1 = document.createElement('img');
-  coeur1.src = "./images/Coeur.png";
-  ctx.drawImage(coeur1, 50, 50, 90, 90);
-
-  const coeur2 = document.createElement('img');
-  coeur2.src = "./images/Coeur.png";
-  ctx.drawImage(coeur2, 150, 50, 90, 90);
-
-  const coeur3 = document.createElement('img');
-  coeur3.src = "./images/Coeur.png";
-  ctx.drawImage(coeur3, 250, 50, 90, 90);
-
-  const coeur4 = document.createElement('img');
-  coeur4.src = "./images/Coeur.png";
-  ctx.drawImage(coeur4, 350, 50, 90, 90);
-
   if (life === 0) {
+    const coeur1 = document.createElement('img');
+    coeur1.src = "./images/Coeur.png";
+    ctx.drawImage(coeur1, 50, 50, 90, 90);
+    const coeur2 = document.createElement('img');
+    coeur2.src = "./images/Coeur.png";
+    ctx.drawImage(coeur2, 150, 50, 90, 90);
+    const coeur3 = document.createElement('img');
+    coeur3.src = "./images/Coeur.png";
+    ctx.drawImage(coeur3, 250, 50, 90, 90);
+    const coeur4 = document.createElement('img');
+    coeur4.src = "./images/Coeur.png";
+    ctx.drawImage(coeur4, 350, 50, 90, 90);
+    const coeur5 = document.createElement('img');
+    coeur5.src = "./images/Coeur.png";
+    ctx.drawImage(coeur5, 450, 50, 90, 90);
+  }
+  else if (life === 1) {
+    const coeur2 = document.createElement('img');
+    coeur2.src = "./images/Coeur.png";
+    ctx.drawImage(coeur2, 150, 50, 90, 90);
+    const coeur3 = document.createElement('img');
+    coeur3.src = "./images/Coeur.png";
+    ctx.drawImage(coeur3, 250, 50, 90, 90);
+    const coeur4 = document.createElement('img');
+    coeur4.src = "./images/Coeur.png";
+    ctx.drawImage(coeur4, 350, 50, 90, 90);
     const coeur5 = document.createElement('img');
     coeur5.src = "./images/Coeur.png";
     ctx.drawImage(coeur5, 450, 50, 90, 90);
   }
 
+  else if (life === 2) {
+    const coeur3 = document.createElement('img');
+    coeur3.src = "./images/Coeur.png";
+    ctx.drawImage(coeur3, 250, 50, 90, 90);
+    const coeur4 = document.createElement('img');
+    coeur4.src = "./images/Coeur.png";
+    ctx.drawImage(coeur4, 350, 50, 90, 90);
+    const coeur5 = document.createElement('img');
+    coeur5.src = "./images/Coeur.png";
+    ctx.drawImage(coeur5, 450, 50, 90, 90);
+  }
+
+  else if (life === 3) {
+    const coeur4 = document.createElement('img');
+    coeur4.src = "./images/Coeur.png";
+    ctx.drawImage(coeur4, 350, 50, 90, 90);
+    const coeur5 = document.createElement('img');
+    coeur5.src = "./images/Coeur.png";
+    ctx.drawImage(coeur5, 450, 50, 90, 90);
+  }
+  else if (life === 4) {
+    const coeur5 = document.createElement('img');
+    coeur5.src = "./images/Coeur.png";
+    ctx.drawImage(coeur5, 450, 50, 90, 90);
+  }
 
 
   player.draw();
@@ -73,7 +107,7 @@ function draw() {
   }
   ctx.font = "50px Arial"
   ctx.textAlign = "right"
-  ctx.fillStyle = "white"
+  ctx.fillStyle = "green"
   ctx.fillText(`${points} Kilos de déchets évités`, W - 50, 100)
 
 }
